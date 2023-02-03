@@ -16,9 +16,9 @@ struct ContentView: View {
             Spacer()
             
             // Make shorter variable called infoProduct
-            if let infoProduct = infoViewModel.infoTable {
+            if let data = infoViewModel.infoTable {
                 // AsyncImage(url: URL(string: (infoViewModel.infoTable?.product.image_url)!))
-                AsyncImage(url: URL(string: (infoProduct.product.image_url)))
+                AsyncImage(url: URL(string: (data.product.image_url)))
                     .scaledToFit()
             } else {
                 Text("No Image yet...")
@@ -27,7 +27,7 @@ struct ContentView: View {
             Button {
                 Task {
                     await infoViewModel.getInfo()
-                    // async in fce (VM), in View await
+    // uses 'async' keyword in the method in the VM, here View 'await'
                 }
             } label: {
                 Text("Just One Click")
