@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3729D5BD298E93A100CBC78E /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5BC298E93A100CBC78E /* BarcodeView.swift */; };
+		3729D5D9298EB39900CBC78E /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5D8298EB39900CBC78E /* ProductView.swift */; };
 		37AA225E2982E20E008A19BF /* PassionFoodApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA225D2982E20E008A19BF /* PassionFoodApp.swift */; };
 		37AA22602982E20E008A19BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA225F2982E20E008A19BF /* ContentView.swift */; };
 		37AA22622982E210008A19BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37AA22612982E210008A19BF /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3729D5BC298E93A100CBC78E /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
+		3729D5D8298EB39900CBC78E /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		37AA225A2982E20E008A19BF /* PassionFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassionFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37AA225D2982E20E008A19BF /* PassionFoodApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassionFoodApp.swift; sourceTree = "<group>"; };
 		37AA225F2982E20E008A19BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				37AA225F2982E20E008A19BF /* ContentView.swift */,
+				3729D5BC298E93A100CBC78E /* BarcodeView.swift */,
+				3729D5D8298EB39900CBC78E /* ProductView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -172,8 +178,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				37AA226C2982E335008A19BF /* InfoTable.swift in Sources */,
+				3729D5BD298E93A100CBC78E /* BarcodeView.swift in Sources */,
 				37AA22602982E20E008A19BF /* ContentView.swift in Sources */,
 				37AA225E2982E20E008A19BF /* PassionFoodApp.swift in Sources */,
+				3729D5D9298EB39900CBC78E /* ProductView.swift in Sources */,
 				37AA227429831DF7008A19BF /* InfoTableViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
