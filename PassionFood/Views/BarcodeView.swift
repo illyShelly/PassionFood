@@ -21,25 +21,33 @@ struct BarcodeView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                Spacer()
-                
-                TextField("Enter Your Barcode", text: $sku) {
+                // Title
+                HStack {
+                    Text("Click \n  Towards  \n     Wisdom")
+                        .font(.largeTitle)
+                        .fontWeight(.thin)
+                        .foregroundColor(Color.white)
+                        .multilineTextAlignment(.leading)
+                        .lineSpacing(25)
+                    Spacer()
                 }
-                .frame(height: 45)
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 70)
+               
+                // Barcode input
+                TextField("Enter Your Barcode", text: $sku)
+                    .frame(height: 45)
                     .disableAutocorrection(true)
-                    // .textFieldStyle(.roundedBorder)
-                    // makes another light layer - 'disable' .background
-                    .background(Color.init(uiColor: .systemGray5))
-                    .cornerRadius(15)
+                    .background(Color.init(uiColor: .systemGray6))
+                    .cornerRadius(10)
                     .padding(20) // move the list up and from edges
-                
                     .multilineTextAlignment(.center)
                     .font(.title3)
-                    .foregroundColor(.gray)
-                    .padding(.vertical, 40)
+                    .foregroundColor(.pink)
+                    .padding(.vertical, 30)
                     .padding(.horizontal, 40)
+                    .keyboardType(.default)
                 
-
 // Group Button and Nav link together + Binding passes into next view
                 Group {
                     Button(action: {
@@ -51,22 +59,22 @@ struct BarcodeView: View {
                     // Don't toggle if Error occur??
                                 if infoTableVM.errorOccured != true {
                                     productFound.toggle() // for nav link
-//                                    sku = ""
                                 }
                                  sku = "" // clear out TextField
                             }
                         }
-                        
                     }, label: {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 20)
+                            RoundedRectangle(cornerRadius: 10)
                                 .fill(Color.black)
                                 .frame(width: 170, height: 55)
                             Text("Scan Me")
-                                .foregroundColor(.white)
+                                .foregroundColor(Color.init(uiColor: .systemGray4))
                                 .font(.title2)
+                                .fontWeight(.regular)
                         }
                     })
+                    
                     NavigationLink("", isActive: $productFound) {
                         if let _ = infoTableVM.infoTable {
                             ProductView(infoVM: infoTableVM, productFound: $productFound)
@@ -75,16 +83,17 @@ struct BarcodeView: View {
                 }
                 
                 Spacer()
-            }
-            .alert("Wrong Barcode, status: \(infoTableVM.statusCode)", isPresented: $infoTableVM.errorOccured,
+            } // end VS
+            .alert("Wrong Barcode \(infoTableVM.statusCode)", isPresented: $infoTableVM.errorOccured,
                 actions: {
                     Button("Try again") {
                         dismiss()
                     }
             })
-            .background(LinearGradient(gradient: Gradient(colors: [.black, .pink]), startPoint: .top, endPoint: .bottomLeading))
+            .background(LinearGradient(gradient: Gradient(colors: [.black, .teal]), startPoint: .topTrailing, endPoint: .bottomLeading))
             .edgesIgnoringSafeArea(.all)
-        }
+        } // end Nav
+        .navigationBarBackButtonHidden(true)
       
     }
 }
