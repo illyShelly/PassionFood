@@ -20,6 +20,7 @@ class InfoTableViewModel: ObservableObject {
     @Published var sku: String = "" // no need 'init' with defined value
     @Published var errorOccured: Bool = false // toggle NavLink into ProductView
     @Published var statusCode: String = "" // default status, show user what's going on
+    @Published var productTable: ProductModel?
     
     func getInfo() async {
         /// Initialize JSON decoder when catching data from API
@@ -46,12 +47,23 @@ class InfoTableViewModel: ObservableObject {
             
             infoTable = try decoder.decode(InfoTable.self, from: data) // Err 0., 1.
             
+            if let data = infoTable {
+               // createProduct(infoTable: data) // 1. initialize ProductModel, 2. pass it into Publisher
+                self.productTable = createProduct(infoTable: data)
+            }
+            
             print("Infotable my struct: \(String(describing: infoTable))") // to silence error
             print("Any error? \(errorOccured)")
         } catch {
             print(error.localizedDescription)
             errorOccured = true
         }
+    }
+    
+    func createProduct(infoTable: InfoTable) -> ProductModel {
+//        Initializer for conditional binding must have Optional type, not 'Product' - never would be 'nil' - checked above
+        let product = infoTable.product
+        return ProductModel(name: product.product_name, brand: product.brands, image: product.image_url, keywords: product._keywords, additives: product.additives_tags, nutriments: infoTable.nutriments)
     }
 }
 
