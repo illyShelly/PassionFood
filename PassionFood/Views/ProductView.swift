@@ -12,12 +12,13 @@ struct ProductView: View {
     @Binding var productFound: Bool
     
     var body: some View {
-// Make shorter variable called infoProduct
-        // Secure handling of 'optionals' -> if let -> if assigned means API call was successful, InfoTable created
-        if let _ = infoVM.infoTable {
-                AsyncImage(url: URL(string: (infoVM.infoTable?.product?.image_url)!))
-                    .scaledToFit()
+        ScrollView {
+            if let _ = infoVM.infoTable {  // a.
+                    AsyncImage(url: URL(string: (infoVM.infoTable?.product?.image_url)!))
+                        .scaledToFit()
+            }
         }
+      
     }
 }
 
@@ -29,3 +30,4 @@ struct ProductView_Previews: PreviewProvider {
 
 
 // AsyncImage(url: URL(string: (productVM.infoTable?.product.image_url)!))
+// a. Secure handling of 'optionals' -> if let -> if assigned means API call was successful, InfoTable created
