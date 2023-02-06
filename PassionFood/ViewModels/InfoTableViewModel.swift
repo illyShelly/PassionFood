@@ -17,7 +17,7 @@ import SwiftUI
 
 class InfoTableViewModel: ObservableObject {
     @Published var infoTable: InfoTable? // InfoTable struct type
-    @Published var sku: String = "" // no need 'init' with defined value
+    @Published var barcode: String = "" // no need 'init' with defined value
     @Published var errorOccured: Bool = false // toggle NavLink into ProductView
     @Published var statusCode: String = "" // default status, show user what's going on
     @Published var productTable: ProductModel?
@@ -25,7 +25,7 @@ class InfoTableViewModel: ObservableObject {
     func getInfo() async {
         /// Initialize JSON decoder when catching data from API
         let decoder = JSONDecoder()
-        let url = URL(string: "https://world.openfoodfacts.org/api/v2/product/\(sku)")
+        let url = URL(string: "https://world.openfoodfacts.org/api/v2/product/\(barcode)")
         var request = URLRequest(url: url!)
             request.httpMethod = "GET"
         //        Perform request
@@ -63,7 +63,7 @@ class InfoTableViewModel: ObservableObject {
     func createProduct(infoTable: InfoTable) -> ProductModel {
 //        Initializer for conditional binding must have Optional type, not 'Product' - never would be 'nil' - checked above
         let product = infoTable.product
-        return ProductModel(name: product.product_name, brand: product.brands, image: product.image_url, keywords: product._keywords, additives: product.additives_tags, nutriments: infoTable.nutriments)
+        return ProductModel(code: infoTable.code, name: product.product_name, brand: product.brands, image: product.image_url, keywords: product._keywords, additives: product.additives_tags, nutriments: infoTable.nutriments)
     }
 }
 

@@ -12,27 +12,36 @@ struct ProductView: View {
     @Binding var productFound: Bool
         
     var body: some View {
-//        ScrollView {
-            VStack {  // alignment: .center, spacing: 20
+        ScrollView {
+            VStack(alignment: .center, spacing: 30) {
                 if let product = infoVM.infoTable?.product {  // a.
-                    HStack {
-                        AsyncImage(url: URL(string: (product.image_url)))
-                                    .scaledToFit()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 80, height: 80)
+                    
+                    AsyncImage(url: URL(string: product.image_url)) { image in image.resizable()
+                    } placeholder: {
+                        ZStack {
+                            Color.init(uiColor: .systemGray6)
+                            Text("Uploading")
+                        }
                     }
-
-                    Text(product.product_name)
-                    Text(product.brands)
-                    Spacer()
-                    if let arrGlutenInfo = product._keywords {
-                        ForEach(arrGlutenInfo, id: \.self) { item in
-                            VStack {
-                                Text("Keywords: \(item)")
+                    .frame(width: 200, height: 200)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    
+                    VStack(alignment: .center, spacing: 30) {
+                        Text(infoVM.infoTable!.code)
+                        Text(product.product_name)
+                        Text(product.brands)
+                        
+                        if let arrGlutenInfo = product._keywords {
+                            ForEach(arrGlutenInfo, id: \.self) { item in
+                                VStack {
+                                    Text("keywords:")
+                                    Text(item)
+                                }
                             }
                         }
                     }
-
+                                 
+                    
                     if let nutriments = infoVM.infoTable?.nutriments {
                         VStack {
                             Text("Energy \(String(format: "%.0f", nutriments.energy))")
@@ -42,16 +51,18 @@ struct ProductView: View {
                             Text("Salt \(String(format: "%.1f", nutriments.salt))")
                         }
                     }
-
+                    
                     // Display all additives if any
                     if var _ = product.additives_tags {
                         AdditivesView(infoVM: infoVM)
                     }
                 }
                 
-            }
-              
-        }
+            } // VS
+            
+        } // Scroll
+
+    }
 }
 
 struct ProductView_Previews: PreviewProvider {

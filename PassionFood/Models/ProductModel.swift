@@ -8,6 +8,7 @@
 import Foundation
 
 struct ProductModel {
+    let code: String
     let name: String
     let brand: String
     let image: String

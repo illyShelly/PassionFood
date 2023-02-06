@@ -9,9 +9,10 @@ import SwiftUI
 
 struct AdditivesView: View {
     @ObservedObject var infoVM: InfoTableViewModel
+    @State var additiveFound: Bool = false
+    @State var chemical: String = "" // when defined no need to pass from previous :)
     
-//    var additives: [String] = ["en:e296", "en:e297", "en:e298", "en:e299", "en:e300", "en:e301"]
-//    @Binding var additives: [String]
+//    var additives: [String] = ["en:e296", "en:e297xx", "en:e298", "en:e299", "en:e300", "en:e301"]
     
     var body: some View {
         let cols = [GridItem(.fixed(90)), GridItem(.fixed(90)), GridItem(.fixed(90))]
@@ -20,17 +21,20 @@ struct AdditivesView: View {
 //                Create rows
             LazyVGrid(columns: cols, alignment: .center, spacing: 15) {
                 ForEach(additives, id: \.self) { additive in
-                    
-                    // Create button for each additive
-//                    NavigationLink(value: additive) {
-//                        Label("Row \(i)", systemImage: "\(i).circle")
-                        Button(additive, action: {
-//                            AdditiveDetail()
+
+                // Create button for each additive
+                    Group {
+                        Button(additive[3..<7].uppercased(), action: {
+                            //
+                            additiveFound = true
+                            chemical = additive
                         })
-//                    }
+                        NavigationLink("", isActive: $additiveFound) {
+                            AdditiveDetail(additive: $chemical)
+                        }
+                    }
                     
                 }
-
             }
         }
        
@@ -39,6 +43,6 @@ struct AdditivesView: View {
 
 struct AdditivesView_Previews: PreviewProvider {
     static var previews: some View {
-        AdditivesView(infoVM: InfoTableViewModel())
+        AdditivesView(infoVM: InfoTableViewModel(), chemical: "E210")
     }
 }

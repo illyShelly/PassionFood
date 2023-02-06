@@ -47,6 +47,8 @@ extension InfoTable: Decodable {
         // Comparing non-optional value of type 'Bool' to 'nil' ( != nil) always returns true !!!
             if product._keywords.contains("gluten-free") {
                 product._keywords.removeAll { $0 != "gluten-free" }
+            } else {
+                product._keywords.removeAll() // otherwise empty whole array
             }
         let nutrimentsContainer = try container.nestedContainer(keyedBy: NutrimentsKeys.self, forKey: .product)
         nutriments = try nutrimentsContainer.decode(Nutriment.self, forKey: .nutriments)

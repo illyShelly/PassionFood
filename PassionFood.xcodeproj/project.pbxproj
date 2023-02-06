@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		371C75A52991737C005ADD2F /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371C75A42991737C005ADD2F /* Extention.swift */; };
 		3729D5BD298E93A100CBC78E /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5BC298E93A100CBC78E /* BarcodeView.swift */; };
 		3729D5D9298EB39900CBC78E /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5D8298EB39900CBC78E /* ProductView.swift */; };
 		3729D5E4299035C500CBC78E /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5E3299035C500CBC78E /* ProductModel.swift */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		371C75A329916098005ADD2F /* StringRange.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = StringRange.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		371C75A42991737C005ADD2F /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		3729D5BC298E93A100CBC78E /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
 		3729D5D8298EB39900CBC78E /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		3729D5E3299035C500CBC78E /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
@@ -48,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		371C75A6299173F4005ADD2F /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				371C75A42991737C005ADD2F /* Extention.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		37AA22512982E20E008A19BF = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				37AA225D2982E20E008A19BF /* PassionFoodApp.swift */,
+				371C75A6299173F4005ADD2F /* Extentions */,
 				37AA227129831608008A19BF /* Models */,
 				37AA227229831627008A19BF /* ViewModels */,
 				37AA2270298315F9008A19BF /* Views */,
@@ -75,6 +87,7 @@
 				37AA22632982E210008A19BF /* Preview Content */,
 				37AA226D2982E602008A19BF /* Test.playground */,
 				37AA226E29830859008A19BF /* Test2.playground */,
+				371C75A329916098005ADD2F /* StringRange.playground */,
 			);
 			path = PassionFood;
 			sourceTree = "<group>";
@@ -190,6 +203,7 @@
 				3729D5BD298E93A100CBC78E /* BarcodeView.swift in Sources */,
 				3729D5E6299042CC00CBC78E /* AdditivesView.swift in Sources */,
 				37AA22602982E20E008A19BF /* ContentView.swift in Sources */,
+				371C75A52991737C005ADD2F /* Extention.swift in Sources */,
 				37AA225E2982E20E008A19BF /* PassionFoodApp.swift in Sources */,
 				3729D5D9298EB39900CBC78E /* ProductView.swift in Sources */,
 				3729D5E829904BCC00CBC78E /* AdditiveDetail.swift in Sources */,

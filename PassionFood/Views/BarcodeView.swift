@@ -15,7 +15,7 @@ struct BarcodeView: View {
     @StateObject var infoTableVM: InfoTableViewModel = InfoTableViewModel()
     @Environment(\.dismiss) private var dismiss
     
-    @State var sku: String = "" // 3017620422003, 0737628064502, 8852018101024
+    @State var barcode: String = "" // 3017620422003, 0737628064502, 8852018101024
     @State var productFound: Bool = false
     
     var body: some View {
@@ -36,7 +36,7 @@ struct BarcodeView: View {
                     .padding(.bottom, 50)
                
 // Input for Barcode
-                TextField("Enter Barcode", text: $sku)
+                TextField("Enter Barcode", text: $barcode)
                     .frame(height: 45)
                     .disableAutocorrection(true)
                     .background(Color.init(uiColor: .systemGray6))
@@ -53,15 +53,15 @@ struct BarcodeView: View {
 // Group Button & Nav link + Binding to pass into ProductView
                 Group {
                     Button(action: {
-                        if sku != "" {
-                            self.infoTableVM.sku = sku
+                        if barcode != "" {
+                            self.infoTableVM.barcode = barcode
         // Uses 'async' in the method in VM, here View 'await'
                             Task {
                                 await infoTableVM.getInfo()
         // Don't toggle 'productFound' when Error occur??
                                 if infoTableVM.errorOccured != true {
                                     productFound.toggle() // for nav link
-                                    sku = ""
+                                    barcode = ""
                                 }
                             //sku = "" // clear out TextField
                             }
@@ -71,7 +71,7 @@ struct BarcodeView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color.black)
                                 .frame(width: 170, height: 55)
-                            Text("Scan Me")
+                            Text("Scan Me".uppercased())
                                 .foregroundColor(Color.init(uiColor: .systemGray6))
                                 .font(.title2)
                                 .fontWeight(.regular)
@@ -95,10 +95,13 @@ struct BarcodeView: View {
                     }
             })
 // Background colour for whole screen
-            .background(LinearGradient(gradient: Gradient(colors: [.black, .mint]), startPoint: .topTrailing, endPoint: .bottomLeading))
+            .background(LinearGradient(
+                gradient: Gradient(colors: [.black, .mint]),
+                startPoint: .topTrailing,
+                endPoint: .bottomLeading))
             .edgesIgnoringSafeArea(.all)
         } // end Nav
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
     }
 }
 
