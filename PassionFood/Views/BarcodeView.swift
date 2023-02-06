@@ -15,13 +15,13 @@ struct BarcodeView: View {
     @StateObject var infoTableVM: InfoTableViewModel = InfoTableViewModel()
     @Environment(\.dismiss) private var dismiss
     
-    @State var sku: String = "" // 3017620422003, 0737628064502
+    @State var sku: String = "" // 3017620422003, 0737628064502, 8852018101024
     @State var productFound: Bool = false
     
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                // Title
+// Title & Slogan
                 HStack {
                     Text("Click \n  Towards  \n     Wisdom")
                         .font(.largeTitle)
@@ -32,10 +32,11 @@ struct BarcodeView: View {
                     Spacer()
                 }
                     .padding(.horizontal, 40)
-                    .padding(.vertical, 70)
+                    .padding(.top, 70)
+                    .padding(.bottom, 50)
                
-                // Barcode input
-                TextField("Enter Your Barcode", text: $sku)
+// Input for Barcode
+                TextField("Enter Barcode", text: $sku)
                     .frame(height: 45)
                     .disableAutocorrection(true)
                     .background(Color.init(uiColor: .systemGray6))
@@ -43,24 +44,26 @@ struct BarcodeView: View {
                     .padding(20) // move the list up and from edges
                     .multilineTextAlignment(.center)
                     .font(.title3)
+                    .fontWeight(.light)
                     .foregroundColor(.pink)
                     .padding(.vertical, 30)
                     .padding(.horizontal, 40)
                     .keyboardType(.default)
                 
-// Group Button and Nav link together + Binding passes into next view
+// Group Button & Nav link + Binding to pass into ProductView
                 Group {
                     Button(action: {
                         if sku != "" {
                             self.infoTableVM.sku = sku
-                    // Uses 'async' in the method in VM, here View 'await'
+        // Uses 'async' in the method in VM, here View 'await'
                             Task {
                                 await infoTableVM.getInfo()
-                    // Don't toggle if Error occur??
+        // Don't toggle 'productFound' when Error occur??
                                 if infoTableVM.errorOccured != true {
                                     productFound.toggle() // for nav link
+                                    sku = ""
                                 }
-                                 sku = "" // clear out TextField
+                            //sku = "" // clear out TextField
                             }
                         }
                     }, label: {
@@ -69,7 +72,7 @@ struct BarcodeView: View {
                                 .fill(Color.black)
                                 .frame(width: 170, height: 55)
                             Text("Scan Me")
-                                .foregroundColor(Color.init(uiColor: .systemGray4))
+                                .foregroundColor(Color.init(uiColor: .systemGray6))
                                 .font(.title2)
                                 .fontWeight(.regular)
                         }
@@ -81,20 +84,21 @@ struct BarcodeView: View {
                         }
                     }
                 }
-                
                 Spacer()
             } // end VS
+            
+// Pop-up alert if anything goes wrong to User
             .alert("Wrong Barcode \(infoTableVM.statusCode)", isPresented: $infoTableVM.errorOccured,
                 actions: {
                     Button("Try again") {
                         dismiss()
                     }
             })
-            .background(LinearGradient(gradient: Gradient(colors: [.black, .teal]), startPoint: .topTrailing, endPoint: .bottomLeading))
+// Background colour for whole screen
+            .background(LinearGradient(gradient: Gradient(colors: [.black, .mint]), startPoint: .topTrailing, endPoint: .bottomLeading))
             .edgesIgnoringSafeArea(.all)
         } // end Nav
         .navigationBarBackButtonHidden(true)
-      
     }
 }
 
