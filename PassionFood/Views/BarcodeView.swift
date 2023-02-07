@@ -20,35 +20,63 @@ struct BarcodeView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .center) {
+            VStack { //(alignment: .center)
 // Title & Slogan
-                HStack {
-                    Text("Click \n  Towards  \n     Wisdom")
-                        .font(.largeTitle)
-                        .fontWeight(.thin)
-                        .foregroundColor(Color.white)
-                        .multilineTextAlignment(.leading)
-                        .lineSpacing(25)
-                    Spacer()
-                }
+                VStack {
+                    ZStack {
+                        HStack {
+                            Text("Scan")
+                                .fontWeight(.thin)
+                                .font(.system(size: 55))
+                                .foregroundColor(.white)
+                            Spacer()
+                        }
+                        // 2nd title
+                        HStack {
+                            Spacer()
+                            Text("Towards")
+                                .fontWeight(.thin)
+                                .font(.system(size: 35))
+                                .foregroundColor(Color.init(uiColor: .systemGray6))
+                                .baselineOffset(-115)
+                            Spacer()
+                        }
+                        .padding(.trailing, 60)
+                        // 3rd title
+                        HStack {
+                            Spacer()
+                            Text("Wisdom")
+                                .fontWeight(.thin)
+                                .font(.system(size: 50))
+                                .foregroundColor(.white)
+                                .baselineOffset(-220)
+                        }
+//                        .padding(.trailing, 5)
+                    }
                     .padding(.horizontal, 40)
-                    .padding(.top, 70)
-                    .padding(.bottom, 50)
+//                    .padding(.top, 10)
+                    .padding(.bottom, 80)
+                }
+
                
 // Input for Barcode
-                TextField("Enter Barcode", text: $barcode)
-                    .frame(height: 45)
-                    .disableAutocorrection(true)
-                    .background(Color.init(uiColor: .systemGray6))
-                    .cornerRadius(10)
-                    .padding(20) // move the list up and from edges
-                    .multilineTextAlignment(.center)
-                    .font(.title3)
-                    .fontWeight(.light)
-                    .foregroundColor(.pink)
-                    .padding(.vertical, 30)
-                    .padding(.horizontal, 40)
-                    .keyboardType(.default)
+                VStack {
+                    TextField("Enter Barcode", text: $barcode)
+                        .frame(height: 45)
+                        .disableAutocorrection(true)
+                        .background(Color.init(uiColor: .systemGray6))
+                        .cornerRadius(5)
+                        .padding(20) // move the list up and from edges
+                        .multilineTextAlignment(.center)
+                        .font(.title3)
+                        .fontWeight(.light)
+                        .foregroundColor(.pink)
+                        .padding(.vertical, 30)
+                        .padding(.horizontal, 40)
+                        .keyboardType(.default)
+                }
+//                .background(.orange)
+                
                 
 // Group Button & Nav link + Binding to pass into ProductView
                 Group {
@@ -63,7 +91,6 @@ struct BarcodeView: View {
                                     productFound.toggle() // for nav link
                                     barcode = ""
                                 }
-                            //sku = "" // clear out TextField
                             }
                         }
                     }, label: {
@@ -71,12 +98,13 @@ struct BarcodeView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color.black)
                                 .frame(width: 170, height: 55)
-                            Text("Scan Me".uppercased())
+                            Text("Scan Me")
                                 .foregroundColor(Color.init(uiColor: .systemGray6))
                                 .font(.title2)
                                 .fontWeight(.regular)
                         }
                     })
+//                    .padding(.bottom, 170)
                     
                     NavigationLink("", isActive: $productFound) {
                         if let _ = infoTableVM.infoTable {
@@ -94,14 +122,12 @@ struct BarcodeView: View {
                         dismiss()
                     }
             })
+
 // Background colour for whole screen
-            .background(LinearGradient(
-                gradient: Gradient(colors: [.black, .mint]),
-                startPoint: .topTrailing,
-                endPoint: .bottomLeading))
-            .edgesIgnoringSafeArea(.all)
+            .background(LinearGradient(gradient: Gradient(colors: [.black, .mint]), startPoint: .topTrailing, endPoint: .bottomLeading))
+            .edgesIgnoringSafeArea(.all) // before ending Nav
         } // end Nav
-//        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
