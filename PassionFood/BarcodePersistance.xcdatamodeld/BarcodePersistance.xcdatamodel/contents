@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AdditiveEntity" representedClassName="AdditiveEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="chemical" optional="YES" attributeType="String"/>
+        <attribute name="info" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="risk" optional="YES" attributeType="String"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="additives" inverseEntity="ProductEntity"/>
+    </entity>
+    <entity name="NutrimentEntity" representedClassName="NutrimentEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="carbo" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="energy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="proteins" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="salt" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="nutriments" inverseEntity="ProductEntity"/>
+    </entity>
+    <entity name="ProductEntity" representedClassName="ProductEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="brand" optional="YES" attributeType="String"/>
+        <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="glutenFree" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="additives" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AdditiveEntity" inverseName="products" inverseEntity="AdditiveEntity"/>
+        <relationship name="nutriments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NutrimentEntity" inverseName="products" inverseEntity="NutrimentEntity"/>
+    </entity>
+</model>

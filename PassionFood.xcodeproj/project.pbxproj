@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		371C75A52991737C005ADD2F /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371C75A42991737C005ADD2F /* Extention.swift */; };
+		371F43482992E41E00D4AB29 /* BarcodePersistance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371F43462992E41E00D4AB29 /* BarcodePersistance.xcdatamodeld */; };
 		3729D5BD298E93A100CBC78E /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5BC298E93A100CBC78E /* BarcodeView.swift */; };
 		3729D5D9298EB39900CBC78E /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5D8298EB39900CBC78E /* ProductView.swift */; };
 		3729D5E4299035C500CBC78E /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5E3299035C500CBC78E /* ProductModel.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		371C75A329916098005ADD2F /* StringRange.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = StringRange.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		371C75A42991737C005ADD2F /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
+		371F43472992E41E00D4AB29 /* BarcodePersistance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BarcodePersistance.xcdatamodel; sourceTree = "<group>"; };
 		3729D5BC298E93A100CBC78E /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
 		3729D5D8298EB39900CBC78E /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		3729D5E3299035C500CBC78E /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				37AA227129831608008A19BF /* Models */,
 				37AA227229831627008A19BF /* ViewModels */,
 				37AA2270298315F9008A19BF /* Views */,
+				371F43462992E41E00D4AB29 /* BarcodePersistance.xcdatamodeld */,
 				37AA22612982E210008A19BF /* Assets.xcassets */,
 				37AA22632982E210008A19BF /* Preview Content */,
 				37AA226D2982E602008A19BF /* Test.playground */,
@@ -209,6 +212,7 @@
 				3729D5E829904BCC00CBC78E /* AdditiveDetail.swift in Sources */,
 				37AA227429831DF7008A19BF /* InfoTableViewModel.swift in Sources */,
 				3729D5E4299035C500CBC78E /* ProductModel.swift in Sources */,
+				371F43482992E41E00D4AB29 /* BarcodePersistance.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +413,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		371F43462992E41E00D4AB29 /* BarcodePersistance.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				371F43472992E41E00D4AB29 /* BarcodePersistance.xcdatamodel */,
+			);
+			currentVersion = 371F43472992E41E00D4AB29 /* BarcodePersistance.xcdatamodel */;
+			path = BarcodePersistance.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 37AA22522982E20E008A19BF /* Project object */;
 }
