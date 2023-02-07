@@ -23,11 +23,10 @@ struct BarcodeView: View {
             VStack { //(alignment: .center)
 // Title & Slogan
                 VStack {
-                    ZStack {
                         HStack {
                             Text("Scan")
                                 .fontWeight(.thin)
-                                .font(.system(size: 55))
+                                .font(.system(size: 50))
                                 .foregroundColor(.white)
                             Spacer()
                         }
@@ -36,9 +35,8 @@ struct BarcodeView: View {
                             Spacer()
                             Text("Towards")
                                 .fontWeight(.thin)
-                                .font(.system(size: 35))
+                                .font(.system(size: 45))
                                 .foregroundColor(Color.init(uiColor: .systemGray6))
-                                .baselineOffset(-115)
                             Spacer()
                         }
                         .padding(.trailing, 60)
@@ -47,18 +45,12 @@ struct BarcodeView: View {
                             Spacer()
                             Text("Wisdom")
                                 .fontWeight(.thin)
-                                .font(.system(size: 50))
+                                .font(.system(size: 45))
                                 .foregroundColor(.white)
-                                .baselineOffset(-220)
                         }
-//                        .padding(.trailing, 5)
-                    }
-                    .padding(.horizontal, 40)
-//                    .padding(.top, 10)
-                    .padding(.bottom, 80)
-                }
-
-               
+                } // title
+                .padding(.horizontal, 30)
+                .padding(.top, 50)
 // Input for Barcode
                 VStack {
                     TextField("Enter Barcode", text: $barcode)
@@ -73,10 +65,8 @@ struct BarcodeView: View {
                         .foregroundColor(.pink)
                         .padding(.vertical, 30)
                         .padding(.horizontal, 40)
-                        .keyboardType(.default)
+                        .keyboardType(.decimalPad)
                 }
-//                .background(.orange)
-                
                 
 // Group Button & Nav link + Binding to pass into ProductView
                 Group {
@@ -112,9 +102,12 @@ struct BarcodeView: View {
                         }
                     }
                 }
-                Spacer()
+//                Spacer()
+                
             } // end VS
-            
+// Background colour for whole screen
+            .background(LinearGradient(gradient: Gradient(colors: [.black, .mint]), startPoint: .topTrailing, endPoint: .bottomLeading))
+            .edgesIgnoringSafeArea(.all) // before ending Nav
 // Pop-up alert if anything goes wrong to User
             .alert("Wrong Barcode \(infoTableVM.statusCode)", isPresented: $infoTableVM.errorOccured,
                 actions: {
@@ -123,11 +116,9 @@ struct BarcodeView: View {
                     }
             })
 
-// Background colour for whole screen
-            .background(LinearGradient(gradient: Gradient(colors: [.black, .mint]), startPoint: .topTrailing, endPoint: .bottomLeading))
-            .edgesIgnoringSafeArea(.all) // before ending Nav
         } // end Nav
         .navigationBarBackButtonHidden(true)
+
     }
 }
 
