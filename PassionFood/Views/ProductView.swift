@@ -16,15 +16,16 @@ struct ProductView: View {
             VStack(alignment: .center, spacing: 30) {
                 if let product = infoVM.infoTable?.product {  // a.
                     
-                    AsyncImage(url: URL(string: product.image_url)) { image in image.resizable()
+                    AsyncImage(url: URL(string: product.image_url)) { img in
+                        img
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
                     } placeholder: {
-                        ZStack {
-                            Color.init(uiColor: .systemGray6)
-                            Text("Uploading")
-                        }
+                        ProgressView() // default showing uploading
                     }
-                    .frame(width: 200, height: 200)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                   
                     
                     VStack(alignment: .center, spacing: 30) {
                         Text(infoVM.infoTable!.code)
@@ -61,6 +62,7 @@ struct ProductView: View {
             } // VS
             
         } // Scroll
+        .padding(.horizontal, 20)
 
     }
 }
