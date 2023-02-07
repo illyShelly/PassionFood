@@ -12,7 +12,7 @@ struct AdditivesView: View {
     @State var additiveFound: Bool = false
     @State var chemical: String = "" // when defined no need to pass from previous :)
     
-//    var additives: [String] = ["en:e296", "en:e297xx", "en:e298", "en:e299", "en:e300", "en:e301"]
+    //    var additives: [String] = ["en:e296", "en:e297xx", "en:e298", "en:e299", "en:e300", "en:e301"]
     
     var body: some View {
         let cols = [GridItem(.fixed(90)), GridItem(.fixed(90)), GridItem(.fixed(90))]
@@ -21,14 +21,16 @@ struct AdditivesView: View {
 //                Create rows
             LazyVGrid(columns: cols, alignment: .center, spacing: 15) {
                 ForEach(additives, id: \.self) { additive in
-
-                // Create button for each additive
+                    
+                    // Create button for each additive
                     Group {
                         Button(additive[3..<7].uppercased(), action: {
-                            //
                             additiveFound = true
-                            chemical = additive
+                            chemical = additive[3..<7].uppercased()
                         })
+                            .frame(width: 90, height: 50)
+                            .background(.green)
+                            .foregroundColor(.white)
                         NavigationLink("", isActive: $additiveFound) {
                             AdditiveDetail(additive: $chemical)
                         }
@@ -37,7 +39,6 @@ struct AdditivesView: View {
                 }
             }
         }
-       
     }
 }
 
