@@ -13,7 +13,7 @@ struct ProductView: View {
         
     var body: some View {
         ScrollView {
-            VStack(alignment: .center, spacing: 30) {
+            VStack(alignment: .center) {
                 if let product = infoVM.infoTable?.product {  // a.
                     
                     AsyncImage(url: URL(string: product.image_url)) { img in
@@ -26,7 +26,6 @@ struct ProductView: View {
                         ProgressView() // default showing uploading
                     }
                    
-                    
                     VStack(alignment: .center, spacing: 30) {
                         Text(infoVM.infoTable!.code)
                         Text(product.product_name)
@@ -42,7 +41,6 @@ struct ProductView: View {
                         }
                     }
                                  
-                    
                     if let nutriments = infoVM.infoTable?.nutriments {
                         VStack {
                             Text("Energy \(String(format: "%.0f", nutriments.energy))")
@@ -62,8 +60,6 @@ struct ProductView: View {
             } // VS
             
         } // Scroll
-        .padding(.horizontal, 20)
-
     }
 }
 

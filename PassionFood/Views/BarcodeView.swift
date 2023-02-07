@@ -15,28 +15,32 @@ struct BarcodeView: View {
     @StateObject var infoTableVM: InfoTableViewModel = InfoTableViewModel()
     @Environment(\.dismiss) private var dismiss
     
-    @State var barcode: String = "" // 3017620422003, 0737628064502, 8852018101024
+    @State var barcode: String = "" // 301 76 204 22 003, 0737628064502, 8852018101024
     @State var productFound: Bool = false
+    @FocusState var skuIsFocused: Bool
     
     var body: some View {
         NavigationView {
             VStack { //(alignment: .center)
 // Title & Slogan
+                Spacer()
                 VStack {
                         HStack {
                             Text("Scan")
                                 .fontWeight(.thin)
                                 .font(.system(size: 50))
                                 .foregroundColor(.white)
+                                .opacity(0.45)
                             Spacer()
                         }
-                        // 2nd title
+//                        // 2nd title
                         HStack {
                             Spacer()
                             Text("Towards")
                                 .fontWeight(.thin)
                                 .font(.system(size: 45))
-                                .foregroundColor(Color.init(uiColor: .systemGray6))
+                                .foregroundColor(.white)
+                                .opacity(0.69)
                             Spacer()
                         }
                         .padding(.trailing, 60)
@@ -47,16 +51,19 @@ struct BarcodeView: View {
                                 .fontWeight(.thin)
                                 .font(.system(size: 45))
                                 .foregroundColor(.white)
+                                .opacity(0.82)
                         }
+
                 } // title
                 .padding(.horizontal, 30)
-                .padding(.top, 50)
-// Input for Barcode
+//                .padding(.top, 60) // make empty white space under the backround
+
+                // Input for Barcode
                 VStack {
                     TextField("Enter Barcode", text: $barcode)
                         .frame(height: 45)
                         .disableAutocorrection(true)
-                        .background(Color.init(uiColor: .systemGray6))
+                        .background(Color.init(uiColor: .systemGray4))
                         .cornerRadius(5)
                         .padding(20) // move the list up and from edges
                         .multilineTextAlignment(.center)
@@ -65,7 +72,10 @@ struct BarcodeView: View {
                         .foregroundColor(.pink)
                         .padding(.vertical, 30)
                         .padding(.horizontal, 40)
-                        .keyboardType(.decimalPad)
+//                        .keyboardType(.decimalPad)
+//                    To dismiss keyboard when going back from Navlink
+                        .focused($skuIsFocused)
+
                 }
                 
 // Group Button & Nav link + Binding to pass into ProductView
@@ -76,25 +86,28 @@ struct BarcodeView: View {
         // Uses 'async' in the method in VM, here View 'await'
                             Task {
                                 await infoTableVM.getInfo()
-        // Don't toggle 'productFound' when Error occur??
+        // When product found, no 'error'
                                 if infoTableVM.errorOccured != true {
                                     productFound.toggle() // for nav link
-                                    barcode = ""
                                 }
+                                barcode = ""
                             }
                         }
+                        skuIsFocused = false // set false again for keyboard up
                     }, label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color.black)
+//                                .opacity(0.9)
                                 .frame(width: 170, height: 55)
-                            Text("Scan Me")
-                                .foregroundColor(Color.init(uiColor: .systemGray6))
+                            Text("Send")
+                                .foregroundColor(.white)
+                                .opacity(0.85)
                                 .font(.title2)
                                 .fontWeight(.regular)
                         }
                     })
-//                    .padding(.bottom, 170)
+                    .padding(.bottom, 45)
                     
                     NavigationLink("", isActive: $productFound) {
                         if let _ = infoTableVM.infoTable {
@@ -102,12 +115,14 @@ struct BarcodeView: View {
                         }
                     }
                 }
-//                Spacer()
-                
+                Spacer()
+                Spacer()
             } // end VS
+            
 // Background colour for whole screen
             .background(LinearGradient(gradient: Gradient(colors: [.black, .mint]), startPoint: .topTrailing, endPoint: .bottomLeading))
             .edgesIgnoringSafeArea(.all) // before ending Nav
+            
 // Pop-up alert if anything goes wrong to User
             .alert("Wrong Barcode \(infoTableVM.statusCode)", isPresented: $infoTableVM.errorOccured,
                 actions: {
@@ -127,3 +142,6 @@ struct BarcodeView_Previews: PreviewProvider {
         BarcodeView()
     }
 }
+
+
+// Do not use so much padding - otherwise make white space when back to 1st screen
