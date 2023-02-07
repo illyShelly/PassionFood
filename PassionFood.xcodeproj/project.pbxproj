@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		371C75A52991737C005ADD2F /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371C75A42991737C005ADD2F /* Extention.swift */; };
 		371F43482992E41E00D4AB29 /* BarcodePersistance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371F43462992E41E00D4AB29 /* BarcodePersistance.xcdatamodeld */; };
+		371F434A2992F4A400D4AB29 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F43492992F4A400D4AB29 /* CoreDataController.swift */; };
 		3729D5BD298E93A100CBC78E /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5BC298E93A100CBC78E /* BarcodeView.swift */; };
 		3729D5D9298EB39900CBC78E /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5D8298EB39900CBC78E /* ProductView.swift */; };
 		3729D5E4299035C500CBC78E /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5E3299035C500CBC78E /* ProductModel.swift */; };
@@ -26,6 +27,7 @@
 		371C75A329916098005ADD2F /* StringRange.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = StringRange.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		371C75A42991737C005ADD2F /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		371F43472992E41E00D4AB29 /* BarcodePersistance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BarcodePersistance.xcdatamodel; sourceTree = "<group>"; };
+		371F43492992F4A400D4AB29 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		3729D5BC298E93A100CBC78E /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
 		3729D5D8298EB39900CBC78E /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		3729D5E3299035C500CBC78E /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		371F434B2992F76900D4AB29 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				371F43492992F4A400D4AB29 /* CoreDataController.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		37AA22512982E20E008A19BF = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				37AA225D2982E20E008A19BF /* PassionFoodApp.swift */,
+				371F434B2992F76900D4AB29 /* CoreData */,
 				371C75A6299173F4005ADD2F /* Extentions */,
 				37AA227129831608008A19BF /* Models */,
 				37AA227229831627008A19BF /* ViewModels */,
@@ -204,6 +215,7 @@
 			files = (
 				37AA226C2982E335008A19BF /* InfoTable.swift in Sources */,
 				3729D5BD298E93A100CBC78E /* BarcodeView.swift in Sources */,
+				371F434A2992F4A400D4AB29 /* CoreDataController.swift in Sources */,
 				3729D5E6299042CC00CBC78E /* AdditivesView.swift in Sources */,
 				37AA22602982E20E008A19BF /* ContentView.swift in Sources */,
 				371C75A52991737C005ADD2F /* Extention.swift in Sources */,
