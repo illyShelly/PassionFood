@@ -14,6 +14,8 @@ import SwiftUI
 struct BarcodeView: View {
     @StateObject var infoTableVM: InfoTableViewModel = InfoTableViewModel()
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var products:FetchedResults // collection of results retrieved from coredata store
     
     @State var barcode: String = "" // 301 76 204 22 003, 0737628064502, 8852018101024
     @State var productFound: Bool = false
@@ -72,7 +74,7 @@ struct BarcodeView: View {
                         .foregroundColor(.pink)
                         .padding(.vertical, 30)
                         .padding(.horizontal, 40)
-//                        .keyboardType(.decimalPad)
+//                        .keyboardType(.decimalPad) // cannot return just on 1st
 //                    To dismiss keyboard when going back from Navlink
                         .focused($skuIsFocused)
 

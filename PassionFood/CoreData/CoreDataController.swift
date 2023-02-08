@@ -23,3 +23,8 @@ class CoreDataController: ObservableObject {
 
 ///Last step:
 ///make instance of coredatacontroller and send it into swiftUI environment - App main
+///To create a new Product we need property to access managedobject context from the environment
+///-> core data will make it's own class, from inherited parent class NSManagedObject - all those managed objects live inside managed object context - accessible across our app thanks to environment.
+///So, @Fetchrequest wrapper knows - looked at man.obj.context and use it for loading and saving (not for .xcdatamodel file). We use another wrapper to access MOC @Environment(\.managedObjectContext) var moc
+///To create data -> using Core data class and attached to MOC made for us. let product = Product(context: moc) -> product.id = UUID(), product.name...
+///To save -> try? moc.save

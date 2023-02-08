@@ -12,7 +12,6 @@
 		371F434A2992F4A400D4AB29 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F43492992F4A400D4AB29 /* CoreDataController.swift */; };
 		3729D5BD298E93A100CBC78E /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5BC298E93A100CBC78E /* BarcodeView.swift */; };
 		3729D5D9298EB39900CBC78E /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5D8298EB39900CBC78E /* ProductView.swift */; };
-		3729D5E4299035C500CBC78E /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5E3299035C500CBC78E /* ProductModel.swift */; };
 		3729D5E6299042CC00CBC78E /* AdditivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5E5299042CC00CBC78E /* AdditivesView.swift */; };
 		3729D5E829904BCC00CBC78E /* AdditiveDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5E729904BCC00CBC78E /* AdditiveDetail.swift */; };
 		37AA225E2982E20E008A19BF /* PassionFoodApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA225D2982E20E008A19BF /* PassionFoodApp.swift */; };
@@ -30,7 +29,6 @@
 		371F43492992F4A400D4AB29 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		3729D5BC298E93A100CBC78E /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
 		3729D5D8298EB39900CBC78E /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
-		3729D5E3299035C500CBC78E /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		3729D5E5299042CC00CBC78E /* AdditivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditivesView.swift; sourceTree = "<group>"; };
 		3729D5E729904BCC00CBC78E /* AdditiveDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditiveDetail.swift; sourceTree = "<group>"; };
 		37AA225A2982E20E008A19BF /* PassionFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassionFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,7 +127,6 @@
 		37AA227129831608008A19BF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3729D5E3299035C500CBC78E /* ProductModel.swift */,
 				37AA226B2982E335008A19BF /* InfoTable.swift */,
 			);
 			path = Models;
@@ -223,7 +220,6 @@
 				3729D5D9298EB39900CBC78E /* ProductView.swift in Sources */,
 				3729D5E829904BCC00CBC78E /* AdditiveDetail.swift in Sources */,
 				37AA227429831DF7008A19BF /* InfoTableViewModel.swift in Sources */,
-				3729D5E4299035C500CBC78E /* ProductModel.swift in Sources */,
 				371F43482992E41E00D4AB29 /* BarcodePersistance.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
