@@ -21,6 +21,7 @@ class InfoTableViewModel: ObservableObject {
     @Published var errorOccured: Bool = false // toggle NavLink into ProductView
     @Published var statusCode: String = "" // default status, show user what's going on
     
+    
     func getInfo() async {
         /// Initialize JSON decoder when catching data from API
         let decoder = JSONDecoder()

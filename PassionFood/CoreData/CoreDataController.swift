@@ -10,7 +10,7 @@ import Foundation
 
 class CoreDataController: ObservableObject {
     // single property type NSpersistence container - Core Data type to loading model & access data inside
-    let container = NSPersistentContainer(name: "BarcodePersistence") // prepare for loading data
+    let container = NSPersistentContainer(name: "Barcodes") // prepare for loading data
     
     init() {
         container.loadPersistentStores { description, error in

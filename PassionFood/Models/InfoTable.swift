@@ -15,7 +15,7 @@ struct Nutriment: Codable {
     let energy: Double
 }
 
-struct Product: Codable {
+struct ProductTable: Codable {
     var _keywords: [String]
     var image_url: String
     var product_name: String
@@ -26,7 +26,7 @@ struct Product: Codable {
 struct InfoTable: Encodable {  // without manual 'decodable' extention or 'init' -> need to use 'Codable' protocol
     var code: String
     var status: Int
-    var product: Product // if I don't make it optional - always get Error - no need to handle status 1 or 0
+    var product: ProductTable // if I don't make it optional - always get Error - no need to handle status 1 or 0
     let nutriments: Nutriment
 
     enum CodingKeys: CodingKey {
@@ -42,7 +42,7 @@ extension InfoTable: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         code = try container.decode(String.self, forKey: .code)
         status = try container.decode(Int.self, forKey: .status)
-        product = try container.decode(Product.self, forKey: .product)
+        product = try container.decode(ProductTable.self, forKey: .product)
         // Delete all strings beside the 'gluten-free'
         // Comparing non-optional value of type 'Bool' to 'nil' ( != nil) always returns true !!!
             if product._keywords.contains("gluten-free") {

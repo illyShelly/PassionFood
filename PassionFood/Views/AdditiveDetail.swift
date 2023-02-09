@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct AdditiveDetail: View {
     @Binding var additive: String
@@ -20,3 +21,21 @@ struct AdditiveDetail_Previews: PreviewProvider {
         AdditiveDetail(additive: .constant("E210"))
     }
 }
+//
+////
+////// MARK: Generated accessors for additives
+//extension ProductEntity {
+//
+//    @objc(addAdditivesObject:)
+//    @NSManaged public func addToAdditives(_ value: AdditiveEntity)
+//
+//    @objc(removeAdditivesObject:)
+//    @NSManaged public func removeFromAdditives(_ value: AdditiveEntity)
+//
+//    @objc(addAdditives:)
+//    @NSManaged public func addToAdditives(_ values: NSSet)
+//
+//    @objc(removeAdditives:)
+//    @NSManaged public func removeFromAdditives(_ values: NSSet)
+//
+//}

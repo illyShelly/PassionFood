@@ -14,16 +14,22 @@ import SwiftUI
 struct BarcodeView: View {
     @StateObject var infoTableVM: InfoTableViewModel = InfoTableViewModel()
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var products:FetchedResults // collection of results retrieved from coredata store
     
-    @State var barcode: String = "" // 301 76 204 22 003, 0737628064502, 8852018101024
-    @State var productFound: Bool = false
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var storedProducts:FetchedResults<ProductEntity> // collection of results retrieved from coredata store
+    @FetchRequest(sortDescriptors: []) var storedNutriments:FetchedResults<NutrimentEntity> // collection of results retrieved from coredata store
+    @FetchRequest(sortDescriptors: []) var storedAdditives:FetchedResults<AdditiveEntity> // collection of results retrieved from coredata store
+
+    
     @FocusState var skuIsFocused: Bool
+    @State var productFound: Bool = false
+
+    @State var barcode: String = "" // 301 76 204 22 003, 0737628064502, 8852018101024
+    @State var currentProduct: ProductEntity
     
     var body: some View {
         NavigationView {
-            VStack { //(alignment: .center)
+            VStack {
 // Title & Slogan
                 Spacer()
                 VStack {
@@ -35,7 +41,7 @@ struct BarcodeView: View {
                                 .opacity(0.45)
                             Spacer()
                         }
-//                        // 2nd title
+                       // 2nd title
                         HStack {
                             Spacer()
                             Text("Towards")
@@ -61,26 +67,13 @@ struct BarcodeView: View {
 //                .padding(.top, 60) // make empty white space under the backround
 
                 // Input for Barcode
-                VStack {
-                    TextField("Enter Barcode", text: $barcode)
-                        .frame(height: 45)
-                        .disableAutocorrection(true)
-                        .background(Color.init(uiColor: .systemGray4))
-                        .cornerRadius(5)
-                        .padding(20) // move the list up and from edges
-                        .multilineTextAlignment(.center)
-                        .font(.title3)
-                        .fontWeight(.light)
-                        .foregroundColor(.pink)
-                        .padding(.vertical, 30)
-                        .padding(.horizontal, 40)
-//                        .keyboardType(.decimalPad) // cannot return just on 1st
-//                    To dismiss keyboard when going back from Navlink
-                        .focused($skuIsFocused)
+                TextField("Enter Barcode", text: $barcode)
+                    .modifier(TextfieldModifier())
+//              To dismiss keyboard when going back from Navlink
+                    .focused($skuIsFocused)
 
-                }
                 
-// Group Button & Nav link + Binding to pass into ProductView
+                // Group Button & Nav link + Binding to pass into ProductView
                 Group {
                     Button(action: {
                         if barcode != "" {
@@ -91,6 +84,13 @@ struct BarcodeView: View {
         // When product found, no 'error'
                                 if infoTableVM.errorOccured != true {
                                     productFound.toggle() // for nav link
+                                    
+                                    // Check if product is already in DB or create a new
+                                    if isProductInDB(barcode: barcode) == false {
+                                        createProduct()
+                                        print("Products count: \(storedProducts.count)")
+                                    }
+                                    currentProduct = foundProduct(sku: barcode)
                                 }
                                 barcode = ""
                             }
@@ -112,11 +112,12 @@ struct BarcodeView: View {
                     .padding(.bottom, 45)
                     
                     NavigationLink("", isActive: $productFound) {
-                        if let _ = infoTableVM.infoTable {
-                            ProductView(infoVM: infoTableVM, productFound: $productFound)
-                        }
+//                            ProductView(infoVM: infoTableVM, productFound: $productFound)
+                        ProductEntityView(barcode: $barcode, currentProduct: $currentProduct)
                     }
+                    
                 }
+                    
                 Spacer()
                 Spacer()
             } // end VS
@@ -137,13 +138,122 @@ struct BarcodeView: View {
         .navigationBarBackButtonHidden(true)
 
     }
+    
+    func foundProduct(sku: String) -> ProductEntity {
+        for product in storedProducts {
+            if product.code == sku {
+                print("Found Product \(product)")
+                return product
+            }
+        }
+        print("productFound doesn't match")
+        return ProductEntity(context: moc)
+    }
+    
+    func isProductInDB(barcode: String) -> Bool {
+        // Check if 'barcode' is alredy in core data
+        // *
+        for product in storedProducts {
+            if product.code == barcode {
+                print("isProductInDB \(product.code == barcode), barcode: \(barcode)")
+                return true
+            }
+        }
+        print("isProductInDB - false, barcode: \(barcode)")
+        return false
+    }
+    
+    func createProduct() {
+        let newProduct = ProductEntity(context: moc)
+        
+        if let data = infoTableVM.infoTable { // avoid optional for infoTable?.product...
+            newProduct.code = data.code
+            newProduct.image = data.product.image_url
+            newProduct.name = data.product.product_name
+            newProduct.brand = data.product.brands
+            if data.product._keywords.contains("gluten-free") {
+                newProduct.glutenFree = true
+            } else {
+                newProduct.glutenFree = false
+            }
+            print("Product was created")
+//            
+            // Fill table with nutriments
+            let newNutriment = NutrimentEntity(context: moc)
+            newNutriment.carbo = data.nutriments.carbohydrates
+            newNutriment.fat = data.nutriments.fat
+            newNutriment.proteins = data.nutriments.proteins
+            newNutriment.salt = data.nutriments.salt
+            newNutriment.energy = data.nutriments.energy
+            newNutriment.products = newProduct // one-to-one
+            
+            print("Nutriment was created")
+// if NSSet -> means has many products/additives etc.
+
+//            // Fill & create table with additives if there are any for the Product
+            if data.product.additives_tags != [] {
+//                print(data.product.additives_tags)
+            for chemical in data.product.additives_tags {
+//                print(chemical)
+                let newAdditive = AdditiveEntity(context: moc)
+                    newAdditive.name = chemical
+                
+                //newAdditive.products?.adding(newProduct)
+                newProduct.additives?.adding(newAdditive)
+                newProduct
+                newAdditive.products?.adding(newAdditive)
+                
+                saveProduct()
+
+            }
+            }
+            //= newProduct.additives // one-to-many
+            print("Additive was created")
+        }
+        saveProduct()
+        print("Additive was created")
+        print("printed saved product \(newProduct)")
+    }
+    
+    func saveProduct() {
+        // save back into moc
+        do {
+            try moc.save()
+        } catch {
+            let err = error as NSError
+            fatalError("Unable to save into DB \(err), \(err.userInfo)")
+        }
+        
+    }
+    
+}
+
+struct TextfieldModifier : ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(height: 45)
+            .disableAutocorrection(true)
+            .background(Color.init(uiColor: .systemGray4))
+            .cornerRadius(5)
+            .padding(20) // move the list up and from edges
+            .multilineTextAlignment(.center)
+            .font(.title3)
+//                .font(.custom("Open Sans", size: 12))
+            .fontWeight(.light)
+            .foregroundColor(.pink)
+            .padding(.vertical, 30)
+            .padding(.horizontal, 40)
+            .keyboardType(.decimalPad) // cannot return just on 1st
+
+    }
 }
 
 struct BarcodeView_Previews: PreviewProvider {
     static var previews: some View {
-        BarcodeView()
+        BarcodeView(currentProduct: ProductEntity())
     }
 }
 
 
 // Do not use so much padding - otherwise make white space when back to 1st screen
+// * Static method 'buildBlock' requires that 'Bool' conform to 'AccessibilityRotorContent'
