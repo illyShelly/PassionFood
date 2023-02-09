@@ -199,9 +199,10 @@ struct BarcodeView: View {
                     newAdditive.name = chemical
                 
                 //newAdditive.products?.adding(newProduct)
-                newProduct.additives?.adding(newAdditive)
-                newProduct
-                newAdditive.products?.adding(newAdditive)
+//                newProduct.additives?.adding(newAdditive)
+                newProduct.addToAdditives(newAdditive)
+                newAdditive.addToProducts(newProduct)
+//                newAdditive.products?.adding(newAdditive)
                 
                 saveProduct()
 

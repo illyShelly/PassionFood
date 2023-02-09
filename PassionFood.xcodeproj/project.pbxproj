@@ -14,6 +14,12 @@
 		3729D5D9298EB39900CBC78E /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5D8298EB39900CBC78E /* ProductView.swift */; };
 		3729D5E6299042CC00CBC78E /* AdditivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5E5299042CC00CBC78E /* AdditivesView.swift */; };
 		3729D5E829904BCC00CBC78E /* AdditiveDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3729D5E729904BCC00CBC78E /* AdditiveDetail.swift */; };
+		376D6E9129955B8700AA4323 /* NutrimentEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D6E8B29955B8700AA4323 /* NutrimentEntity+CoreDataClass.swift */; };
+		376D6E9229955B8700AA4323 /* NutrimentEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D6E8C29955B8700AA4323 /* NutrimentEntity+CoreDataProperties.swift */; };
+		376D6E9329955B8700AA4323 /* ProductEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D6E8D29955B8700AA4323 /* ProductEntity+CoreDataClass.swift */; };
+		376D6E9429955B8700AA4323 /* ProductEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D6E8E29955B8700AA4323 /* ProductEntity+CoreDataProperties.swift */; };
+		376D6E9529955B8700AA4323 /* AdditiveEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D6E8F29955B8700AA4323 /* AdditiveEntity+CoreDataClass.swift */; };
+		376D6E9629955B8700AA4323 /* AdditiveEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D6E9029955B8700AA4323 /* AdditiveEntity+CoreDataProperties.swift */; };
 		37745EFD2993D9B900CD524F /* ProductEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37745EFC2993D9B900CD524F /* ProductEntityView.swift */; };
 		37AA225E2982E20E008A19BF /* PassionFoodApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA225D2982E20E008A19BF /* PassionFoodApp.swift */; };
 		37AA22602982E20E008A19BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA225F2982E20E008A19BF /* ContentView.swift */; };
@@ -32,6 +38,12 @@
 		3729D5D8298EB39900CBC78E /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		3729D5E5299042CC00CBC78E /* AdditivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditivesView.swift; sourceTree = "<group>"; };
 		3729D5E729904BCC00CBC78E /* AdditiveDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditiveDetail.swift; sourceTree = "<group>"; };
+		376D6E8B29955B8700AA4323 /* NutrimentEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NutrimentEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		376D6E8C29955B8700AA4323 /* NutrimentEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NutrimentEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		376D6E8D29955B8700AA4323 /* ProductEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		376D6E8E29955B8700AA4323 /* ProductEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		376D6E8F29955B8700AA4323 /* AdditiveEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdditiveEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		376D6E9029955B8700AA4323 /* AdditiveEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdditiveEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37745EFC2993D9B900CD524F /* ProductEntityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEntityView.swift; sourceTree = "<group>"; };
 		37AA225A2982E20E008A19BF /* PassionFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassionFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37AA225D2982E20E008A19BF /* PassionFoodApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassionFoodApp.swift; sourceTree = "<group>"; };
@@ -90,6 +102,12 @@
 		37AA225C2982E20E008A19BF /* PassionFood */ = {
 			isa = PBXGroup;
 			children = (
+				376D6E8B29955B8700AA4323 /* NutrimentEntity+CoreDataClass.swift */,
+				376D6E8D29955B8700AA4323 /* ProductEntity+CoreDataClass.swift */,
+				376D6E8F29955B8700AA4323 /* AdditiveEntity+CoreDataClass.swift */,
+				376D6E8E29955B8700AA4323 /* ProductEntity+CoreDataProperties.swift */,
+				376D6E8C29955B8700AA4323 /* NutrimentEntity+CoreDataProperties.swift */,
+				376D6E9029955B8700AA4323 /* AdditiveEntity+CoreDataProperties.swift */,
 				37AA225D2982E20E008A19BF /* PassionFoodApp.swift */,
 				371F434B2992F76900D4AB29 /* CoreData */,
 				371C75A6299173F4005ADD2F /* Extentions */,
@@ -218,11 +236,17 @@
 				371F434A2992F4A400D4AB29 /* CoreDataController.swift in Sources */,
 				3729D5E6299042CC00CBC78E /* AdditivesView.swift in Sources */,
 				37AA22602982E20E008A19BF /* ContentView.swift in Sources */,
+				376D6E9529955B8700AA4323 /* AdditiveEntity+CoreDataClass.swift in Sources */,
+				376D6E9629955B8700AA4323 /* AdditiveEntity+CoreDataProperties.swift in Sources */,
 				371C75A52991737C005ADD2F /* Extention.swift in Sources */,
 				37AA225E2982E20E008A19BF /* PassionFoodApp.swift in Sources */,
 				37745EFD2993D9B900CD524F /* ProductEntityView.swift in Sources */,
+				376D6E9329955B8700AA4323 /* ProductEntity+CoreDataClass.swift in Sources */,
 				3729D5D9298EB39900CBC78E /* ProductView.swift in Sources */,
+				376D6E9429955B8700AA4323 /* ProductEntity+CoreDataProperties.swift in Sources */,
+				376D6E9129955B8700AA4323 /* NutrimentEntity+CoreDataClass.swift in Sources */,
 				3729D5E829904BCC00CBC78E /* AdditiveDetail.swift in Sources */,
+				376D6E9229955B8700AA4323 /* NutrimentEntity+CoreDataProperties.swift in Sources */,
 				37AA227429831DF7008A19BF /* InfoTableViewModel.swift in Sources */,
 				371F43482992E41E00D4AB29 /* Barcodes.xcdatamodeld in Sources */,
 			);
