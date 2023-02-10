@@ -10,7 +10,7 @@
         <attribute name="fat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="proteins" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="salt" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="products" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="nutriments" inverseEntity="ProductEntity"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="nutriment" inverseEntity="ProductEntity"/>
     </entity>
     <entity name="ProductEntity" representedClassName="ProductEntity" syncable="YES">
         <attribute name="brand" optional="YES" attributeType="String"/>
@@ -19,6 +19,6 @@
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="additives" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AdditiveEntity" inverseName="products" inverseEntity="AdditiveEntity"/>
-        <relationship name="nutriments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NutrimentEntity" inverseName="products" inverseEntity="NutrimentEntity"/>
+        <relationship name="nutriment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NutrimentEntity" inverseName="product" inverseEntity="NutrimentEntity"/>
     </entity>
 </model>

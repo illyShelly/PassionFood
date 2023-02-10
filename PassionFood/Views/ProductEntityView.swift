@@ -30,7 +30,7 @@ struct ProductEntityView: View {
             }
             
 //            Text("Energy \(String(format: "%.0f", nutriments.energy))")
-            Text("Carbo \(String(format: "%.0f", (currentProduct.nutriments?.carbo)!))")
+            Text("Carbo \(String(format: "%.0f", (currentProduct.nutriment?.carbo)!))")
             
             if let allAdditives = currentProduct.additives?.allObjects as?  [AdditiveEntity] {
                 ForEach(allAdditives) { additive in
