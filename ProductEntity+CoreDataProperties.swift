@@ -2,7 +2,7 @@
 //  ProductEntity+CoreDataProperties.swift
 //  PassionFood
 //
-//  Created by Ilona Sellenberkova on 09/02/2023.
+//  Created by Ilona Sellenberkova on 10/02/2023.
 //
 //
 
@@ -22,7 +22,7 @@ extension ProductEntity {
     @NSManaged public var image: String?
     @NSManaged public var name: String?
     @NSManaged public var additives: NSSet?
-    @NSManaged public var nutriments: NutrimentEntity?
+    @NSManaged public var nutriment: NutrimentEntity?
 
 }
 

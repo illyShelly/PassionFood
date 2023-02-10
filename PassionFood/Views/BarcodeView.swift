@@ -185,7 +185,7 @@ struct BarcodeView: View {
             newNutriment.proteins = data.nutriments.proteins
             newNutriment.salt = data.nutriments.salt
             newNutriment.energy = data.nutriments.energy
-            newNutriment.products = newProduct // one-to-one
+            newNutriment.product = newProduct // one-to-one
             
             print("Nutriment was created")
 // if NSSet -> means has many products/additives etc.

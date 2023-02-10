@@ -2,7 +2,7 @@
 //  NutrimentEntity+CoreDataProperties.swift
 //  PassionFood
 //
-//  Created by Ilona Sellenberkova on 09/02/2023.
+//  Created by Ilona Sellenberkova on 10/02/2023.
 //
 //
 
@@ -21,7 +21,7 @@ extension NutrimentEntity {
     @NSManaged public var fat: Double
     @NSManaged public var proteins: Double
     @NSManaged public var salt: Double
-    @NSManaged public var products: ProductEntity?
+    @NSManaged public var product: ProductEntity?
 
 }
 
